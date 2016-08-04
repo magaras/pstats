@@ -1,9 +1,14 @@
 # pStats
-PHP library with statistical methods.
+[![Build Status](https://travis-ci.org/magaras/pstats.svg?branch=master)](https://travis-ci.org/magaras/pstats)
 
-Install with cimposer *composer require magaras/pstats*
+PHP library containing statistical methods.
 
-The library contains the following methods:
+
+Install with composer `*composer require magaras/pstats*`
+
+
+The library supports the following methods:
+------
 
 1. mean
 2. median
