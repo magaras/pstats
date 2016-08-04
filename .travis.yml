@@ -1,0 +1,10 @@
+language: php
+
+php:
+  - '7.0'
+  - hhvm
+  - nightly
+  
+before_script: cd src/tests
+
+script: --bootstrap ../../vendor/autoload.php

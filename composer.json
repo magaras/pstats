@@ -1,0 +1,22 @@
+{
+	"name": "magaras/pstats",
+	"type": "library",
+    "description": "Library that contains statistical methods.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Konstantinos Magarisiotis",
+            "role": "Software Engineer"
+        }
+    ],
+	"require": {
+		"php": "^5.4.0 || ^7.0",
+        "phpunit/phpunit": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "autoload": {
+        "psr-4": {"pStats\\": "src/"}
+    }
+}
