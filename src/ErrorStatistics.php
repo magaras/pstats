@@ -76,7 +76,7 @@ class ErrorStatistics extends DataValues
 	
 	
 	/**
-	 *  Calculates the variance for a data set.
+	 *  Calculates the variance for a data set for a pupulation or a sample set.
 	 *  Variance is defined as 'The average of the squared differences from the Mean.'.
 	 *  
 	 *  References:
@@ -85,13 +85,14 @@ class ErrorStatistics extends DataValues
 	 *  Steps:
 	 *  	1. Make sure that elements are numeric
 	 *  	2. Calculate the mean
-	 *  	3. Create a second 'predictions' array which contains the mean value
-	 *  	4. Calculate the variance : the 'Mean Squared Error' between the elements and the mean
+	 *  	3. Calculate the variance : the 'Mean Squared Error' between the elements and the mean
 	 *  
 	 *  @param array $data
 	 */
-	public static function variance($data = [])
+	public static function variance($data = [], $population = true)
 	{
+		$variance = 0;
+		
 		// Step 1.
 		array_map("self::isNumeric", $data);
 		
@@ -99,10 +100,20 @@ class ErrorStatistics extends DataValues
 		$mean = BasicStatistics::mean($data);
 		
 		// Step 3.
-		$predictions = array_pad([], count($data), $mean);
+		$n = count($data);
+		$sum = 0;
+		for($i=0; $i<$n; $i++) {
+			$sum += pow(self::absoluteError($data[$i], $mean), 2);
+		}
 		
-		// Step 4.
-		return self::mse($data, $predictions);
+		if($population == true) {
+			$variance = round($sum / $n, 3);
+		}
+		else {
+			$variance = round($sum / ($n-1), 3);
+		}
+		
+		return $variance;
 	}
 	
 	

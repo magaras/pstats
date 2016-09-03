@@ -81,8 +81,12 @@ class ErrorStatisticsTests extends TestCase
 		$this->assertEquals(6.708, $variance);
 		
 		$actuals 		= 	[600, 470, 170, 430, 300];
-		$variance = ErrorStatistics::variance($actuals);
+		$variance = ErrorStatistics::variance($actuals, true);
 		$this->assertEquals(21704, $variance);
+		
+		$actuals 		= 	[600, 470, 170, 430, 300];
+		$variance = ErrorStatistics::variance($actuals, false);
+		$this->assertEquals(27130, $variance);
 	}
 	
 	
