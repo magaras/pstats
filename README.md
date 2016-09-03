@@ -27,16 +27,30 @@ The library supports the following methods:
 11. Std : `ErrorStatistics::std($data);`
 
 12. Absolute / Relative / Cumulative Frequency for continuous values :
-`$classes_f = FrequencyStatistics::frequencyContinuous($data);`
+
+`$classes = FrequencyStatistics::frequencyContinuous($data);`
+
 `$classes[$i]->absolute_frequency`
+
 `$classes[$i]->relative_frequency`
+
 `$classes[$i]->cumulative_frequency`
 
+
 13.Absolute / Relative / Cumulative Frequency for discrete values :
+
 `$classes = FrequencyStatistics::frequencyDiscrete($data);`
+
 `$classes[$i]->absolute_frequency`
+
 `$classes[$i]->relative_frequency`
+
 `$classes[$i]->cumulative_frequency`
+
+
+
+
+
 
 14. Simple Moving Average : `MovingAverage::simpleMovingAverage(10, $data);`
 15. Exponential Moving Average : `MovingAverage::exponentialMovingAverage(10, $data);`
