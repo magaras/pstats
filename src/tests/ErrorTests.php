@@ -1,106 +1,106 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use pStats\FrequencyStatistics;
-use pStats\ErrorStatistics;
+use pStats\Frequency;
+use pStats\Error;
 
-class ErrorStatisticsTests extends TestCase
+class ErrorTests extends TestCase
 {
 	/**
-	 *  Tests the 'FrequencyStatistics::absoluteError' method.
+	 *  Tests the 'Frequency::absoluteError' method.
 	 */
 	public function testAbsoluteError()
 	{		
-		$aerror = ErrorStatistics::absoluteError(0, 0);
+		$aerror = Error::absoluteError(0, 0);
 		$this->assertEquals(0, 		$aerror);
 		
-		$aerror = ErrorStatistics::absoluteError(2, 2.2);
+		$aerror = Error::absoluteError(2, 2.2);
 		$this->assertEquals(0.2, 	$aerror);
 		
-		$aerror = ErrorStatistics::absoluteError(3, 3);
+		$aerror = Error::absoluteError(3, 3);
 		$this->assertEquals(0, 		$aerror);
 		
-		$aerror = ErrorStatistics::absoluteError(5, 6);
+		$aerror = Error::absoluteError(5, 6);
 		$this->assertEquals(1, 		$aerror);
 		
-		$aerror = ErrorStatistics::absoluteError(7.2, 7);
+		$aerror = Error::absoluteError(7.2, 7);
 		$this->assertEquals(0.2, 	$aerror);
 		
-		$aerror = ErrorStatistics::absoluteError(6, 5);
+		$aerror = Error::absoluteError(6, 5);
 		$this->assertEquals(1, 		$aerror);
 		
-		$aerror = ErrorStatistics::absoluteError(3, 0);
+		$aerror = Error::absoluteError(3, 0);
 		$this->assertEquals(3, 		$aerror);
 		
-		$aerror = ErrorStatistics::absoluteError(2.1, 2);
+		$aerror = Error::absoluteError(2.1, 2);
 		$this->assertEquals(0.1, 	$aerror);
 		
-		$aerror = ErrorStatistics::absoluteError(9, 7);
+		$aerror = Error::absoluteError(9, 7);
 		$this->assertEquals(2, 		$aerror);
 		
-		$aerror = ErrorStatistics::absoluteError(5.4, 5);
+		$aerror = Error::absoluteError(5.4, 5);
 		$this->assertEquals(0.4, 	$aerror);
 	}
 	
 	
 	/**
-	 *  Tests the 'FrequencyStatistics::mae' method.
+	 *  Tests the 'Frequency::mae' method.
 	 */
 	public function testMeanAbsoluteError()
 	{
 		$actuals 		= 	[0, 2, 	3, 5, 7.2, 6, 3, 2.1, 9, 5.4];
 		$predictions 	= 	[0, 2.2,3, 4, 7,   5, 0, 2,	  7, 5];
 		
-		$mae = ErrorStatistics::mae($actuals, $predictions);
+		$mae = Error::mae($actuals, $predictions);
 		$this->assertEquals(0.790, $mae);
 	}
 	
 	
 	
 	/**
-	 *  Tests the 'FrequencyStatistics::mse' method.
+	 *  Tests the 'Frequency::mse' method.
 	 */
 	public function testMeanSquaredError()
 	{
 		$actuals 		= 	[0, 2, 	3, 5, 7.2, 6, 3, 2.1, 9, 5.4];
 		$predictions 	= 	[0, 2.2,3, 4, 7,   5, 0, 2,	  7, 5];
 	
-		$mae = ErrorStatistics::mse($actuals, $predictions);
+		$mae = Error::mse($actuals, $predictions);
 		$this->assertEquals(1.525, $mae);
 	}
 	
 	
 	
 	/**
-	 *  Tests the 'FrequencyStatistics::variance' method.
+	 *  Tests the 'Frequency::variance' method.
 	 */
 	public function testVariance()
 	{
 		$actuals 		= 	[0, 2, 	3, 5, 7.2, 6, 3, 2.1, 9, 5.4];
-		$variance = ErrorStatistics::variance($actuals);
+		$variance = Error::variance($actuals);
 		$this->assertEquals(6.708, $variance);
 		
 		$actuals 		= 	[600, 470, 170, 430, 300];
-		$variance = ErrorStatistics::variance($actuals, true);
+		$variance = Error::variance($actuals, true);
 		$this->assertEquals(21704, $variance);
 		
 		$actuals 		= 	[600, 470, 170, 430, 300];
-		$variance = ErrorStatistics::variance($actuals, false);
+		$variance = Error::variance($actuals, false);
 		$this->assertEquals(27130, $variance);
 	}
 	
 	
 	/**
-	 *  Tests the 'FrequencyStatistics::std' method.
+	 *  Tests the 'Frequency::std' method.
 	 */
 	public function testStd()
 	{
 		$actuals 		= 	[0, 2, 	3, 5, 7.2, 6, 3, 2.1, 9, 5.4];
-		$std = ErrorStatistics::std($actuals);
+		$std = Error::std($actuals);
 		$this->assertEquals(2.59, $std);
 	
 		$actuals 		= 	[600, 470, 170, 430, 300];
-		$std = ErrorStatistics::std($actuals);
+		$std = Error::std($actuals);
 		$this->assertEquals(147.323, $std);
 	}
 	

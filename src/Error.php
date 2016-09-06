@@ -9,7 +9,7 @@
  *  @author Konstantinos Magarisiotis
  *  @license MIT
  */
-class ErrorStatistics extends DataValues
+class Error extends DataValues
 {
 	/**
 	 * Calculate the 'Absolute Error' between two numbers,
@@ -97,7 +97,7 @@ class ErrorStatistics extends DataValues
 		array_map("self::isNumeric", $data);
 		
 		// Step 2.
-		$mean = BasicStatistics::mean($data);
+		$mean = Basic::mean($data);
 		
 		// Step 3.
 		$n = count($data);

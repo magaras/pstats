@@ -25,7 +25,7 @@
  *  @author Konstantinos Magarisiotis
  *  @license MIT
  */
-class FrequencyStatistics extends DataValues
+class Frequency extends DataValues
 {
 	/**
 	 *  Given a dataset, the method calculates the absolute, relative and
@@ -45,7 +45,7 @@ class FrequencyStatistics extends DataValues
 		$classes_num = self::getNumberOfClasses($items_count);
 		
 		// Get the bottom and top ranges
-		$range_margins = BasicStatistics::range($data);
+		$range_margins = Basic::range($data);
 		$range = $range_margins->max - $range_margins->min;
 		
 		// Calculate the group size

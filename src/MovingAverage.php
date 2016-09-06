@@ -59,7 +59,7 @@ class MovingAverage extends DataValues
 			$arr = array_slice($data, $i, $ma_value);
 			
 			// Step 5.2.
-			$mean = BasicStatistics::mean($arr);
+			$mean = Basic::mean($arr);
 			
 			// Step 5.3
 			$ma_arr[$i + $ma_value-1] = $mean;

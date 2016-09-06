@@ -14,7 +14,7 @@
  *  @author Konstantinos Magarisiotis
  *  @license MIT
  */
-class BasicStatistics extends DataValues
+class Basic extends DataValues
 {
 	/**
 	 *  Returns the mean/average value of an array.

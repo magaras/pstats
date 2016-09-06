@@ -1,8 +1,10 @@
 # pStats
 [![Build Status](https://travis-ci.org/magaras/pstats.svg?branch=master)](https://travis-ci.org/magaras/pstats)
 
-A PHP library containing a lot of statistical methods, from the most usefull ones (*like mean, variance, etc*) to even some more sophisticated,
-like moving average.
+
+A PHP library containing a lot of statistical methods, from the most usefull ones (*like mean and variance*) to even some more sophisticated,
+like moving average and outliers around median.
+
 
 I intend to keep updating this library in order for it to be as thorough as possible.
 
@@ -11,42 +13,103 @@ Install with composer `composer require magaras/pstats`.
 
 
 The library supports the following methods:
-------
-
-1. Mean : `BasicStatistics::mean($data);`
-2. Median : `BasicStatistics::median($data);` 
-3. Mode : `BasicStatistics::mode($data);`
-4. Range : `BasicStatistics::range($data);`
-5. Percentage Change : `BasicStatistics::percentageChange($value1, $value2);`
-6. Percentage Difference : `BasicStatistics::percentageDifference($value1, $value2);`
-
-7. Absolute Error : `ErrorStatistics::absoluteError(0, 0);`
-8. Mean Absolute Error : `ErrorStatistics::mae($actuals, $predictions);`
-9. Mean Square Error : `ErrorStatistics::mse($actuals, $predictions);`
-10. Variance *(population / sample)* : `ErrorStatistics::variance($data, true); / ErrorStatistics::variance($data, false);`
-11. Std : `ErrorStatistics::std($data);`
-
-12. Absolute / Relative / Cumulative Frequency for continuous values :
-
-`$classes = FrequencyStatistics::frequencyContinuous($data);`
-
-`$classes[$i]->absolute_frequency`
-
-`$classes[$i]->relative_frequency`
-
-`$classes[$i]->cumulative_frequency`
+======
 
 
-13.Absolute / Relative / Cumulative Frequency for discrete values :
+**Mean**
+```php
+Basic::mean($data);
+```
 
-`$classes = FrequencyStatistics::frequencyDiscrete($data);`
+** Median**
+```php
+Basic::median($data);
+```
 
-`$classes[$i]->absolute_frequency`
+**Mode**
+```php
+Basic::mode($data);
+```
 
-`$classes[$i]->relative_frequency`
+**Range**
+```php
+Basic::range($data);
+```
 
-`$classes[$i]->cumulative_frequency`
+**Percentage Change**
+```php
+Basic::percentageChange($start_value, $end_value);
+```
 
+**Percentage Difference**
+```php
+Basic::percentageDifference($start_value, $end_value);
+```
 
-14. Simple Moving Average : `MovingAverage::simpleMovingAverage(10, $data);`
-15. Exponential Moving Average : `MovingAverage::exponentialMovingAverage(10, $data);`
+**Absolute Error**
+```php
+Error::absoluteError(0, 0);
+```
+
+**Mean Absolute Error**
+```php
+Error::mae($actuals, $predictions);
+```
+
+**Mean Square Error**
+```php
+Error::mse($actuals, $predictions);
+```
+
+**Variance *(population / sample)***
+```php
+Error::variance($data, true);
+Error::variance($data, false);
+```
+
+**Std**
+```php
+Error::std($data);
+```
+
+**Absolute / Relative / Cumulative Frequency for continuous values**
+```php
+$frequency_classes = Frequency::frequencyContinuous($data);
+
+$frequency_classes[$i]->absolute_frequency
+
+$frequency_classes[$i]->relative_frequency
+
+$frequency_classes[$i]->cumulative_frequency
+```
+
+**Absolute / Relative / Cumulative Frequency for discrete values**
+```php
+$frequency_classes = Frequency::frequencyDiscrete($data);
+
+$frequency_classes[$i]->absolute_frequency
+
+$frequency_classes[$i]->relative_frequency
+
+$frequency_classes[$i]->cumulative_frequency
+```
+
+**Simple Moving Average**
+```php
+MovingAverage::simpleMovingAverage($moving_average_value, $data);
+```
+
+**Exponential Moving Average**
+```php
+MovingAverage::exponentialMovingAverage(moving_average_value, $data);
+```
+
+**Outliers Around Mean**
+```php
+Outliers::outlierAroundMean($data);
+```
+
+**Outliers Around Median**
+```php
+Outliers::outlierAroundMedian($data);
+```

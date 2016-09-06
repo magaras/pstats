@@ -1,92 +1,92 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use pStats\FrequencyStatistics;
+use pStats\Frequency;
 
 /**
- *  This class contains tests for the 'FrequencyStatistics' class.
+ *  This class contains tests for the 'Frequency' class.
  *  
  *  @author Konstantinos Magarisiotis
  */
-class FrequencyStatisticsTest extends TestCase
+class FrequencyTest extends TestCase
 {
 	/**
-	 *  Tests the 'FrequencyStatistics::countItems' method.
+	 *  Tests the 'Frequency::countItems' method.
 	 */
 	public function testCountItems()
 	{
 		// Test Case 1
 		$data = [1, 3, 2, 4, 5, 2, 4, 8, 7, 9];
-		$items = FrequencyStatistics::countItems($data);
+		$items = Frequency::countItems($data);
 		$this->assertEquals(8, $items);
 		
 		// Test Case 2
 		$data = [1, 3, 87, 34, 5, 2, 4, 8, 7, 9];
-		$items = FrequencyStatistics::countItems($data);
+		$items = Frequency::countItems($data);
 		$this->assertEquals(10, $items);
 		
 		// Test Case 3
 		$data = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-		$items = FrequencyStatistics::countItems($data);
+		$items = Frequency::countItems($data);
 		$this->assertEquals(1, $items);
 		
 		// Test Case 4
 		$data = [5, 6, 3, 3, 2, 4, 7, 5, 2, 3, 5, 6, 5, 4, 4, 3, 5, 2, 5, 3];
-		$items = FrequencyStatistics::countItems($data);
+		$items = Frequency::countItems($data);
 		$this->assertEquals(6, $items);
 	}
 	
 	
 	
 	/**
-	 *  Tests the 'FrequencyStatistics::getNumberOfClasses' method.
+	 *  Tests the 'Frequency::getNumberOfClasses' method.
 	 */
 	public function testGetNumberOfClasses()
 	{
-		$num = FrequencyStatistics::getNumberOfClasses(8);
+		$num = Frequency::getNumberOfClasses(8);
 		$this->assertEquals(4, $num);
 		
-		$num = FrequencyStatistics::getNumberOfClasses(21);
+		$num = Frequency::getNumberOfClasses(21);
 		$this->assertEquals(5, $num);
 		
-		$num = FrequencyStatistics::getNumberOfClasses(6);
+		$num = Frequency::getNumberOfClasses(6);
 		$this->assertEquals(4, $num);
 	}
 	
 	
 	
 	/**
-	 *  Tests the 'FrequencyStatistics::calcGroupSize' method.
+	 *  Tests the 'Frequency::calcGroupSize' method.
 	 */
 	public function testCalcGroupSize()
 	{
 		// Test Case 1
-		$size = FrequencyStatistics::calcGroupSize(9, 4);
+		$size = Frequency::calcGroupSize(9, 4);
 		$this->assertEquals(3, $size);
 		
 		// Test Case 2
-		$size = FrequencyStatistics::calcGroupSize(15, 4);
+		$size = Frequency::calcGroupSize(15, 4);
 		$this->assertEquals(4, $size);
 		
 		// Test Case 3
-		$size = FrequencyStatistics::calcGroupSize(21, 5);
+		$size = Frequency::calcGroupSize(21, 5);
 		$this->assertEquals(5, $size);
 		
-		$size = FrequencyStatistics::calcGroupSize(8, 4);
+		$size = Frequency::calcGroupSize(8, 4);
 		$this->assertEquals(3, $size);
 	}
 	
 	
 	
 	/**
-	 *  Tests the 'FrequencyStatistics::createClasses' method.
+	 *  Tests the 'Frequency::createClasses' method.
 	 *  @group testCreateClasses
 	 */
 	public function testCreateClasses()
 	{
 		// *** Test Case 1
 		$data = [9,8,7,1,0,3,8,9];
-		$classes = FrequencyStatistics::createClasses(0, 3, 4);
+		$classes = Frequency::createClasses(0, 3, 4);
 		   // Class N.1
 		$this->assertEquals(0,    $classes[0]->low);
 		$this->assertEquals(-0.5, $classes[0]->low_boundary);
@@ -130,7 +130,7 @@ class FrequencyStatisticsTest extends TestCase
 		
 		// *** Test Case 2
 		$data = [0,8,7,8,6,4,2,1,3,2];
-		$classes = FrequencyStatistics::createClasses(0, 3, 4);
+		$classes = Frequency::createClasses(0, 3, 4);
 		    // Class N.1
 		$this->assertEquals(0,    $classes[0]->low);
 		$this->assertEquals(-0.5, $classes[0]->low_boundary);
@@ -171,14 +171,14 @@ class FrequencyStatisticsTest extends TestCase
 	
 	
 	/**
-	 *  Tests the 'FrequencyStatistics::calcFrequencyContinuous' method.
+	 *  Tests the 'Frequency::calcFrequencyContinuous' method.
 	 */
 	public function testCalcFrequencyContinuous()
 	{
 		// *** Test Case 1
 		$data = [9,8,7,1,0,3,8,9];
-		$classes = FrequencyStatistics::createClasses(0, 3, 4);
-		$classes_f = FrequencyStatistics::calcFrequencyContinuous($data, $classes);
+		$classes = Frequency::createClasses(0, 3, 4);
+		$classes_f = Frequency::calcFrequencyContinuous($data, $classes);
 		$this->assertEquals(2,     $classes_f[0]->absolute_frequency);
 		$this->assertEquals(0.25,  $classes_f[0]->relative_frequency);
 		$this->assertEquals(0.25,  $classes_f[0]->cumulative_frequency);
@@ -199,8 +199,8 @@ class FrequencyStatisticsTest extends TestCase
 		
 		// *** Test Case 2
 		$data = [0,8,7,8,6,4,2,1,3,2];
-		$classes = FrequencyStatistics::createClasses(0, 3, 4);
-		$classes_f = FrequencyStatistics::calcFrequencyContinuous($data, $classes);
+		$classes = Frequency::createClasses(0, 3, 4);
+		$classes_f = Frequency::calcFrequencyContinuous($data, $classes);
 		
 		$this->assertEquals(4,     $classes_f[0]->absolute_frequency);
 		$this->assertEquals(0.4,   $classes_f[0]->relative_frequency);
@@ -222,12 +222,12 @@ class FrequencyStatisticsTest extends TestCase
 	
 	
 	/**
-	 *  Tests the 'FrequencyStatistics::calcFrequencyDiscrete' method.
+	 *  Tests the 'Frequency::calcFrequencyDiscrete' method.
 	 */
 	public function testCalcFrequencyDiscrete()
 	{
 		$data = [32, 31, 28, 29, 33, 32, 31, 30, 31, 31, 27, 28, 29, 30, 32, 31, 31, 30, 30, 29, 29, 30, 30, 31, 30, 31, 34, 33, 33, 29, 29];
-		$classes = FrequencyStatistics::calcFrequencyDiscrete($data);
+		$classes = Frequency::calcFrequencyDiscrete($data);
 		$this->assertEquals(1, 			$classes[27]->absolute_frequency);
 		$this->assertEquals(0.03226, 	$classes[27]->relative_frequency,		'', 0.001);
 		$this->assertEquals(0.03226, 	$classes[27]->cumulative_frequency, 	'', 0.001);
@@ -273,13 +273,13 @@ class FrequencyStatisticsTest extends TestCase
 	
 
 	/**
-	 *  Tests the 'FrequencyStatistics::frequencyContinuous' method.
+	 *  Tests the 'Frequency::frequencyContinuous' method.
 	 */
 	public function testFrequencyContinuous()
 	{
 		// *** Test Case 1
 		$data = [9,8,7,1,0,3,8,9];
-		$classes_f = FrequencyStatistics::frequencyContinuous($data);
+		$classes_f = Frequency::frequencyContinuous($data);
 		
 		$this->assertEquals(0,     $classes_f[0]->low);
 		$this->assertEquals(-0.5,  $classes_f[0]->low_boundary);
@@ -317,7 +317,7 @@ class FrequencyStatisticsTest extends TestCase
 	
 		// *** Test Case 2
 		$data = [0,8,7,8,6,4,2,1,3,2];
-		$classes_f = FrequencyStatistics::frequencyContinuous($data);
+		$classes_f = Frequency::frequencyContinuous($data);
 	
 		$this->assertEquals(0,     $classes_f[0]->low);
 		$this->assertEquals(-0.5,  $classes_f[0]->low_boundary);
@@ -356,12 +356,12 @@ class FrequencyStatisticsTest extends TestCase
 	
 	
 	/**
-	 *  Tests the 'FrequencyStatistics::frequencyAbsolutes' method.
+	 *  Tests the 'Frequency::frequencyAbsolutes' method.
 	 */
 	public function testFrequencyDiscrete()
 	{
 		$data = [32, 31, 28, 29, 33, 32, 31, 30, 31, 31, 27, 28, 29, 30, 32, 31, 31, 30, 30, 29, 29, 30, 30, 31, 30, 31, 34, 33, 33, 29, 29];
-		$classes = FrequencyStatistics::frequencyDiscrete($data);
+		$classes = Frequency::frequencyDiscrete($data);
 		$this->assertEquals(1, 			$classes[27]->absolute_frequency);
 		$this->assertEquals(0.03226, 	$classes[27]->relative_frequency,		'', 0.001);
 		$this->assertEquals(0.03226, 	$classes[27]->cumulative_frequency, 	'', 0.001);
