@@ -87,9 +87,9 @@ class Basic extends DataValues
 		if($nums == 0) {
 			return 0;
 		} else if(fmod($nums, 2) == 0){
-			$median = ($data[($nums/2) - 1] + $data[$nums/2])/2;
-		} else{
-			$median = $data[$nums/2];
+			$median = ($data[(int)($nums/2) - 1] + $data[(int)($nums/2)])/2;
+		} else {
+			$median = $data[(int)($nums/2)];
 		}
 		
 		// Step 5.
